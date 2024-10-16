@@ -1,13 +1,15 @@
 (() => {
-  const gtagScript = document.createElement('script');
-  gtagScript.async = true;
-  gtagScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-59C6YZDTJY';
-  document.head.appendChild(gtagScript);
-
   window.dataLayer = window.dataLayer || [];
-  // eslint-disable-next-line no-undef
-  const gtag = (...args) => dataLayer.push(args);
-  gtag('js', new Date());
+  window.dataLayer.push({
+    'gtm.start': new Date().getTime(),
+    event: 'gtm.js',
+  });
 
-  gtag('config', 'G-59C6YZDTJY');
+  const gtmScript = document.createElement('script');
+  gtmScript.async = true;
+  const gtmId = 'GTM-K9KKVKV7';
+  gtmScript.src = `https://www.googletagmanager.com/gtm.js?id=${gtmId}`;
+
+  const firstScript = document.getElementsByTagName('script')[0];
+  firstScript.parentNode.insertBefore(gtmScript, firstScript);
 })();
