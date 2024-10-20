@@ -94,7 +94,6 @@ export function loadGTM() {
 async function loadEager(doc) {
   document.documentElement.lang = 'en';
   decorateTemplateAndTheme();
-  loadGTM();
   const main = doc.querySelector('main');
   if (main) {
     decorateMain(main);
@@ -119,6 +118,7 @@ async function loadEager(doc) {
  * @param {Element} doc The container element
  */
 async function loadLazy(doc) {
+  loadGTM();
   const main = doc.querySelector('main');
   await loadSections(main);
 
