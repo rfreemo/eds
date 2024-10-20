@@ -74,6 +74,23 @@ export function loadGTM() {
   }
 
   window.dataLayer.push({
+    event: 'view_item_list',
+    category: 'Protein Powder',
+    ecommerce: {
+      items: [
+        {
+          name: 'Pure Whey Protein™',
+          sku: 'BPB-WPC8-0000',
+          url: 'https://www.bulk.com/products/undefined/bpb-wpc8-0000',
+          imageUrl: 'https://www.bulk.com/media/catalog/product/B/P/BPB_WPC8_CHOC_Thumbnail_Image_be68.png',
+          price: 12.79,
+          rank: 0,
+        },
+      ],
+    },
+  });
+
+  window.dataLayer.push({
     'gtm.start': new Date().getTime(),
     event: 'gtm.js',
   });
