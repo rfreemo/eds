@@ -68,6 +68,25 @@ export function decorateMain(main) {
   decorateBlocks(main);
 }
 
+export function loadGTM() {
+  if (!window.dataLayer) {
+    window.dataLayer = [];
+  }
+
+  window.dataLayer.push({
+    'gtm.start': new Date().getTime(),
+    event: 'gtm.js',
+  });
+
+  const gtmScript = document.createElement('script');
+  gtmScript.async = true;
+  const gtmId = 'GTM-K9KKVKV7'; // Replace with your actual GTM ID
+  gtmScript.src = `https://www.googletagmanager.com/gtm.js?id=${gtmId}`;
+
+  const firstScript = document.getElementsByTagName('script')[0];
+  firstScript.parentNode.insertBefore(gtmScript, firstScript);
+}
+
 /**
  * Loads everything needed to get to LCP.
  * @param {Element} doc The container element
@@ -128,25 +147,6 @@ async function loadPage() {
   await loadEager(document);
   await loadLazy(document);
   loadDelayed();
-}
-
-export function loadGTM() {
-  if (!window.dataLayer) {
-    window.dataLayer = [];
-  }
-
-  window.dataLayer.push({
-    'gtm.start': new Date().getTime(),
-    event: 'gtm.js'
-  });
-
-  const gtmScript = document.createElement('script');
-  gtmScript.async = true;
-  const gtmId = 'GTM-K9KKVKV7'; // Replace with your actual GTM ID
-  gtmScript.src = `https://www.googletagmanager.com/gtm.js?id=${gtmId}`;
-  
-  const firstScript = document.getElementsByTagName('script')[0];
-  firstScript.parentNode.insertBefore(gtmScript, firstScript);
 }
 
 loadPage();
