@@ -75,6 +75,7 @@ export function decorateMain(main) {
 async function loadEager(doc) {
   document.documentElement.lang = 'en';
   decorateTemplateAndTheme();
+  loadGTM();
   const main = doc.querySelector('main');
   if (main) {
     decorateMain(main);
@@ -127,6 +128,25 @@ async function loadPage() {
   await loadEager(document);
   await loadLazy(document);
   loadDelayed();
+}
+
+export function loadGTM() {
+  if (!window.dataLayer) {
+    window.dataLayer = [];
+  }
+
+  window.dataLayer.push({
+    'gtm.start': new Date().getTime(),
+    event: 'gtm.js'
+  });
+
+  const gtmScript = document.createElement('script');
+  gtmScript.async = true;
+  const gtmId = 'GTM-K9KKVKV7'; // Replace with your actual GTM ID
+  gtmScript.src = `https://www.googletagmanager.com/gtm.js?id=${gtmId}`;
+  
+  const firstScript = document.getElementsByTagName('script')[0];
+  firstScript.parentNode.insertBefore(gtmScript, firstScript);
 }
 
 loadPage();
